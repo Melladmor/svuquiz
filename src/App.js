@@ -6,6 +6,7 @@ import { fetchSpec } from './redux/slices/specSlice';
 import {BrowserRouter as Router , Routes , Route} from 'react-router-dom'
 import FormSelectQuiz from './component/FormSelectQuiz';
 import Quiz from './component/Quiz';
+import LOGO from './assets/images/logo.png'
 function App() {
 
   const disaptch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
     <div className="App">
         <div className='app__content'>
             <div className='logo__div'>
-              <img src='/assets/images/logo.png' alt='logo.png'/>
+              <img src={LOGO} alt='logo.png'/>
             </div>
 
             
