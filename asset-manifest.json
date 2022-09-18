@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/svuquiz/static/css/main.e0de53c5.css",
+    "main.js": "/svuquiz/static/js/main.110dbb92.js",
+    "index.html": "/svuquiz/index.html",
+    "main.e0de53c5.css.map": "/svuquiz/static/css/main.e0de53c5.css.map",
+    "main.110dbb92.js.map": "/svuquiz/static/js/main.110dbb92.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e0de53c5.css",
+    "static/js/main.110dbb92.js"
+  ]
+}
