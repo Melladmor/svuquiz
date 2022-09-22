@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
+const dataQuizCourse = localStorage.getItem('dataQuizCourse');
 
 const quizCourseSlice = createSlice({
     name:"quizCourseSlice",
     initialState:{
-        quizCourse:[]
+        quizCourse:dataQuizCourse?JSON.parse(dataQuizCourse):[]
     }
     ,
     reducers:{
         setQuizCourse:(state,action)=>{
             state.quizCourse = action.payload
+            localStorage.setItem('dataQuizCourse',JSON.stringify(action.payload));
+
         }
     }
 })

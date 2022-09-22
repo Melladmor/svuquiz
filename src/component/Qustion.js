@@ -4,7 +4,7 @@ import Loading from './Loading';
 import {useNavigate} from 'react-router-dom'
 import Score from './Score';
 const Qustion = ({currentQustion,setQurrentQustion ,options,correct,score,setScore}) => {
-    const {quiz ,specChoise ,courseChoise} =useSelector(state=>state.quizSlice);
+    const {quiz} =useSelector(state=>state.quizSlice);
 
     const [selected ,setSelected] =useState();
     const [error , setError] =useState(false)
@@ -33,12 +33,15 @@ const Qustion = ({currentQustion,setQurrentQustion ,options,correct,score,setSco
 
         if(currentQustion === quiz.length -1){
             setEndQustion(true)
+            localStorage.setItem('cuurentQustion',JSON.stringify(0))
 
         }else if(currentQustion === quiz.length -1 && !selected){
             setError(true)
         }
         else if(selected){
             setQurrentQustion(currentQustion +1)
+            localStorage.setItem('cuurentQustion',JSON.stringify(currentQustion +1))
+
             setSelected('')
         }else{
             setError(true)
@@ -60,10 +63,7 @@ const Qustion = ({currentQustion,setQurrentQustion ,options,correct,score,setSco
             <h5><span>السؤال</span> {currentQustion +1} <span>من</span> {quiz.length}</h5>
             <h6 className='mt-3 mb-5'>{` السؤال: ${quiz[currentQustion]?.quest} ؟`}</h6>
             {error&&<p>قم بأختيار اجابة</p>}
-            <div className='options__content' 
-                        data-aos="fade-right"
-                        data-aos-offset="300"
-                        data-aos-easing="ease-in-sine">
+            <div className='options__content' >
                 {options?
                 options.map((el,idx)=>{
                     return(
@@ -79,16 +79,12 @@ const Qustion = ({currentQustion,setQurrentQustion ,options,correct,score,setSco
                     <button className='btn next'
                     onClick={next}
                     disabled={endQustion}
-                    data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine"
                     >السؤال التالي</button>
                     <button className='btn quit'
                     onClick={quit}
-                    data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine"
-                    >خروج</button>
+                    >
+                    خروج
+                    </button>
                 </div>
             </div>
             </>

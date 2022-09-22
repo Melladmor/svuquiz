@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
 import {useSelector} from 'react-redux'
-import Loading from './Loading';
 import Qustion from './Qustion';
 // import {useNavigate} from 'react-router-dom';
 import AOS from 'aos';
@@ -11,20 +10,30 @@ const Quiz = () => {
     const {spec } =useSelector(state=>state.specSlice);
     const {quizCourse} =useSelector(state=>state.quizCourseSlice);
 
+    console.log('quiz',quiz)
+
     const [score , setScore] = useState(0);
 
-    const [currentQustion , setQurrentQustion] = useState(0)
+    const curQus = localStorage.getItem('cuurentQustion')
+    const [currentQustion , setQurrentQustion] = useState(curQus?JSON.parse(curQus):0)
 
     const [options ,setOptions] =useState()
 
 
-    const filterSpecialization = spec.find(el => {
+    const filterSpecialization = spec.filter(el => {
         return el.id === Number(specChoise)
     })
 
-    const filterCourse = quizCourse.find(el => {
+    const filterCourse = quizCourse.filter(el => {
         return el.id === Number(courseChoise)
     })
+
+
+
+
+
+    console.log('fitlerspecname',filterSpecialization)
+    console.log('filtercoursename',filterCourse)
 
     useEffect(()=>{
         setOptions(quiz.length!==0? 
@@ -40,15 +49,6 @@ const Quiz = () => {
     },[quiz,setOptions,currentQustion])
 
 
-    
-
-
-    
-
-
-
-    
-
     const handleShuffle =(option)=>{
         return option.sort(()=>Math.random()-0.5)
     }
@@ -58,8 +58,8 @@ const Quiz = () => {
 return (
     <div className='quiz'>
         <div className='headerTitle'>
-            <h4>{`الاختصاص: ${filterSpecialization.name}`}</h4>
-            <h4>{`المادة: ${filterCourse.name}`}</h4>
+            <h4>{`الاختصاص: ${filterSpecialization[0].name}`}</h4>
+            <h4>{`المادة: ${filterCourse[0].name}`}</h4>
             <h4>{`الأجوبة الصحيحة: ${score}`}</h4>
         </div>
 

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
+const dataCourse = localStorage.getItem('dataCourse')
 const courseSlice = createSlice({
     name:'courseSlice',
     initialState:{
-        course:[],
+        course:dataCourse?JSON.parse(dataCourse):[],
         loadingCourse:null
     },
     reducers:{
@@ -14,6 +14,7 @@ const courseSlice = createSlice({
         },
         setCourse:(state,action)=>{
             state.course =action.payload;
+            localStorage.setItem('dataCourse',JSON.stringify(action.payload));
             state.loadingCourse =false
         },
         setError:(state)=>{

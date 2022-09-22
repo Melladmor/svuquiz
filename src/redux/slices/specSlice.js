@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const specUrl ='https://graduation-site.000webhostapp.com/api/GetSpec'
+const specUrl ='https://graduation-site.000webhostapp.com/api/GetSpec';
+const specData = localStorage.getItem('spec');
 
 export const fetchSpec = createAsyncThunk('',async(_,thunkApi)=>{
     try {
         const resSpec = await axios.get(specUrl);
+        localStorage.setItem('spec',JSON.stringify(resSpec.data.data))
         return resSpec.data.data;
     } catch (error) {
         return thunkApi.rejectWithValue('somting went rong')
@@ -16,7 +18,7 @@ const specSlice = createSlice({
     name:"specSlice",
 
     initialState:{
-        spec:[],
+        spec:specData?JSON.parse(specData):[],
         loading:null,
     },
 

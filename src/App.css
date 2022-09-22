@@ -1,9 +1,12 @@
 .App {
   height: 100vh;
-  background: linear-gradient(to right, #000000,#000000, #434343,#000000,#000000); 
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('./assets/images/background.jfif');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 
 }
 .app__content{
@@ -121,10 +124,7 @@
   border: none;
   margin-left: 5%;
 }
-.options__content button:hover{
-  background: linear-gradient(to right, #000000,#000000, #434343,#000000,#000000); 
 
-}
 
 .selectRigthChoise{
   background-color: #00C851 !important;
@@ -156,8 +156,10 @@
   background-color: #CC0000 !important;
 }
 .score__content{
-  text-align: center;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 .score__content h4{
   color: #82b1ff;
@@ -179,6 +181,12 @@
   color: #82b1ff;
 }
 @media(max-width:776px){
+  .App{
+    height: 120vh;
+  }
+  .app__content{
+    height: 110vh;
+  }
   .headerTitle h4{
     font-size: 14px;
   }
@@ -188,7 +196,29 @@
     border-image:none;
     border: none;
   }
+  .next__quit__div{
+    flex-direction: column;
+  }
+  .next{
+    width: 100% !important;
+    font-size: 14px;
+    background: linear-gradient(to right, #000000,#000000, #434343,#000000,#000000); 
+  }
+  .quit{
+    width: 100% !important;
+  }
+  .next__quit__div button:hover{
+    background-color: inherit !important;
+  }
+  .score__content h4{
+    text-align: center;
+    width: 250px;
+    font-size: 12px;
+  }
+
+
 }
+
 
 
 

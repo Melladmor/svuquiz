@@ -53,6 +53,7 @@ const FormSelectQuiz = () => {
             try {
                 const resCourse = await axios.get(`https://graduation-site.000webhostapp.com/api/GetQuiz/${courseChoise}`);
                 const dataQuizCourse =resCourse.data.data;
+
                 dispatch(setQuizCourse(dataQuizCourse||[]))
                 
             } catch (error) {
@@ -80,9 +81,9 @@ const FormSelectQuiz = () => {
 
     const handleClick = ()=>{
         if(specChoise.length !==0 && courseChoise.length !==0 && quizCourseChoise.length !==0){
-            navigate('quiz')
+            navigate('/quiz')
         }else{
-            navigate('svuquiz')
+            navigate('/svuquiz')
         }
 
     }
@@ -92,11 +93,7 @@ const FormSelectQuiz = () => {
     return (
         <div>
             {loading?<Loading/>:
-            <div dir='rtl' className='form__select__div '  
-                data-aos="fade-right"
-                data-aos-offset="300"
-                data-aos-easing="ease-in-sine"
-                >
+            <div dir='rtl' className='form__select__div'>
                 <select className="form-select" aria-label="Default select example"
                 onChange={(e)=>{
                     setSpecChoise(e.target.value)
